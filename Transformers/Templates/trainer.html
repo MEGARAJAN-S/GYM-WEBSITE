@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trainer</title>
+    <style>
+            .split{
+        height: 100%;
+        width: 60%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+        padding-top: 20px;
+        }
+        .left{
+        left: 0;
+        background-color: lightblue;
+        }
+        .right{
+        right: 0;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+        width: 60%; /* Adjust the width as needed */
+        padding: 20px;
+        ox-sizing: border-box;
+        }
+        .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        }
+        a{
+        padding : 5px;
+        color : black;
+        text-decoration : none;
+        }
+        a:hover{
+        border-radius : 10px;
+        background : white;
+        color : lightblue;
+        }
+        .right table{
+        margin: auto;
+        }
+        .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        .styled-table thead tr {
+        background-color: lightblue;
+        color: #ffffff;
+        text-align: left;
+        }
+        .styled-table th,
+        .styled-table td {
+        padding: 12px 15px;
+        }
+        .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+        }
+        .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+        }
+        .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid lightblue;
+        }
+    </style>
+</head>
+<body>
+<div><div class="split left">
+    <div class="center">
+<h1>TRAINER ATTENDANCE</h1>
+<form autocomplete="off" method="POST">
+    {% csrf_token %}
+    <h2>TRAINER ID : <input type="text" name="TID"></h2>
+    <input type="submit" value="submit">
+    <h2><a href="/home/check">BACK</a></h2>
+</form>
+        </div></div>
+</div>
+<div>
+    <div class="split right">
+        <div class="center">
+    <h1>TRAINER LOGIN TODAY</h1>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>TRAINER ID</th>
+                        <th>NAME</th>
+                        <th>IN TIME</th>
+                        <th>OUT TIME</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in Trainer%}
+                    <tr>
+                        <td>{{ data.T_id }}</td>
+                        <td>{{ data.Name }}</td>
+                        <td>{{ data.in_time }}</td>
+                        <td>{{ data.out_time }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br><br><br><br>
+            </div></div>
+</div>
+</body>
+</html>

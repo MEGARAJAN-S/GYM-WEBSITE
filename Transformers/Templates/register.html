@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        h1{
+        font-family : sans-serif;
+        margin : auto;
+        text-align : center;
+        border : 3px solid green;
+        padding : 10px;
+        }
+        h2{
+        font-family : sans-serif;
+        text-align : center;
+        padding : 3px;
+        }
+        a{
+        padding : 5px;
+        color : black;
+        text-decoration : none;
+        }
+        a:hover{
+        border-radius : 10px;
+        background : white;
+        color : lightblue;
+        }
+    body{
+        background-color : lightblue;
+        padding-top: 120px;
+        margin : auto;
+    }
+    </style>
+</head>
+<body>
+<div class="login-box">
+<h1>REGISTER</h1>
+<form method="POST" autocomplete="off">
+    {% csrf_token %}
+    <h2>GYM ID :  <input type="text" name="GymID"></h2>
+    <h2>NAME   :   <input type="text" name="Name"></h2>
+    <h2>PHONE  :  <input type="number" name="Phone"></h2>
+    <h2>EMAIL  :  <input type="email" name="email"></h2>
+    <h2><input type="submit" value="submit"></h2>
+    <h2><a href="/home/choice">BACK</a></h2>
+</form>
+</div>
+</body>
+</html>

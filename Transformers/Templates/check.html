@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Check In/Out</title>
+    <style>
+        .split{
+        height: 100%;
+        width: 60%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+        padding-top: 20px;
+        }
+        .left{
+        left: 0;
+        background-color: lightblue;
+        }
+        .right{
+        right: 0;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+        width: 60%; /* Adjust the width as needed */
+        padding: 20px;
+        ox-sizing: border-box;
+        }
+        .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        }
+        a{
+
+        color : black;
+        text-decoration : none;
+        }
+        a:hover{
+        border-radius : 10px;
+        background : white;
+        color : lightblue;
+        }
+        .right table{
+        margin: auto;
+        }
+        .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        .styled-table thead tr {
+        background-color: lightblue;
+        color: #ffffff;
+        text-align: left;
+        }
+        .styled-table th,
+        .styled-table td {
+        padding: 12px 15px;
+        }
+        .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+        }
+        .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+        }
+        .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid lightblue;
+        }
+
+    </style>
+</head>
+<body>
+<div class="all">
+    <div class="split left">
+    <div class="center">
+
+
+    <h2>CHECK IN/OUT</h2>
+    <form method="POST" autocomplete="off">
+        {% csrf_token %}
+        <h2>GYM ID : <input type="text" name="GymID"></h2>
+        <h2><input type="submit" value="submit"></h2>
+    </form>
+    <h2><a href="/">BACK</a></h2>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <h2><a href="/home/check/trainer">TRAINER</a></h2>
+    </div></div>
+    <div class="split right">
+        <div class="center">
+            <h1>USER LOGIN TODAY</h1>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>GYM ID</th>
+                        <th>NAME</th>
+                        <th>IN TIME</th>
+                        <th>OUT TIME</th>
+                        <th>FEE END DATE</th>
+                        <th>FEE REMAINING DAYS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in user_data %}
+                    <tr>
+                        <td>{{ user.Gym_id }}</td>
+                        <td>{{ user.Name }}</td>
+                        <td>{{ user.In_time }}</td>
+                        <td>{{ user.Out_time }}</td>
+                        {% for fee in fee_data %}
+                        {% if fee.Gym_id == user.Gym_id %}
+                        <td>{{fee.end_date}}</td>
+                        <td>{{fee.re_day}}</td>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div></div>
+</div>
+</body>
+</html>
