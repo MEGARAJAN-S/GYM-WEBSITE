@@ -14,7 +14,7 @@ def today():
     global country
     global Today
     country = pytz.timezone("Asia/Kolkata")
-    Today = datetime.date.today(tz=asia_time)
+    Today = datetime.date.today()
     fee_date_table = fee_table.objects.all()
     for data in fee_date_table:
         data.re_day = (data.end_date - Today).days - 1
