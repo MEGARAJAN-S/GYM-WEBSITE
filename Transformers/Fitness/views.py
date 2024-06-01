@@ -6,11 +6,15 @@ import datetime
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 from reportlab.lib import colors,units
 from reportlab.lib.styles import ParagraphStyle
+import pytz
 # Create your views here.
+country = None
 Today = None
 def today():
+    global country
     global Today
-    Today = datetime.date.today()
+    country = pytz.timezone("Asia/Kolkata")
+    Today = datetime.date.today(tz=asia_time)
     fee_date_table = fee_table.objects.all()
     for data in fee_date_table:
         data.re_day = (data.end_date - Today).days - 1
@@ -96,7 +100,7 @@ def check_in_out(request):
                     Gym_id=check_out_id,
                     Name=check_out_Name,
                     In_time=check_out_in_time,
-                    Out_time=datetime.datetime.now().time(),
+                    Out_time=datetime.datetime.now(country).time(),
                     attendance=True
                 )
                 check_out_table.save()
@@ -107,7 +111,7 @@ def check_in_out(request):
                 check_in_table = user_table(
                     Gym_id=check_in_out_id,
                     Name=data_in.Name,
-                    In_time=datetime.datetime.now().time(),
+                    In_time=datetime.datetime.now(country).time(),
                     attendance=True
                 )
                 check_in_table.save()
@@ -172,7 +176,7 @@ def trainer(request):
                     T_id=check_out_t_id,
                     Name=check_out_t_name,
                     in_time=check_out_t_in_time,
-                    out_time=datetime.datetime.now().time(),
+                    out_time=datetime.datetime.now(country).time(),
                     attendance=True
                 )
                 check_out_t_table.save()
@@ -183,7 +187,7 @@ def trainer(request):
                 check_in_t_table = trainer_attendance_table(
                     T_id=data.T_id,
                     Name=data.Name,
-                    in_time=datetime.datetime.now().time(),
+                    in_time=datetime.datetime.now(country).time(),
                     attendance=True
                 )
                 check_in_t_table.save()
