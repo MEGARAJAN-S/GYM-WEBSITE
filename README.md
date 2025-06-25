@@ -83,6 +83,6 @@ Visit:
 🔐 http://127.0.0.1:8000/admin/ for the admin panel
 Git Token : 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
 
-🙋‍♂️ Author
-Megarajan S.
+##🙋‍♂️ Author
+**Megarajan S.**
 🎓 B.Tech CSE | Shiv Nadar University, Chennai
